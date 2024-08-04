@@ -1,0 +1,17 @@
+"use strict";
+const a = 5;
+const b = "hello";
+const c = true;
+const d = undefined;
+const e = null;
+const f = Symbol.for("abc");
+const g = 100000000n;
+const h = true;
+const i = true;
+const j = 5;
+const add = (x, y) => x + y;
+const obj = { lat: 37.5, lon: 127.5 };
+const arr = ["123", "456"];
+const arr2 = [123, 456];
+const arr3 = [123, 456];
+const arr4 = [123, 456, "hello"];
