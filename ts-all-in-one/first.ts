@@ -29,16 +29,16 @@
 
 const obj = { lat: 37.5, lon: 127.5 };
 
-const arr = ["123", "456"];
-const arr2 = [123, 456];
-const arr3 = [123, 456];
-const arr4: [number, number, string] = [123, 456, "hello"];
+// const arr = ["123", "456"];
+// const arr2 = [123, 456];
+// const arr3 = [123, 456];
+// const arr4: [number, number, string] = [123, 456, "hello"];
 
-const a = "5";
-const b = 5;
-const c = true;
-const d = undefined;
-const e = null;
+// const a = "5";
+// const b = 5;
+// const c = true;
+// const d = undefined;
+// const e = null;
 
 // function add(x: number, y: number) {
 //   return x + y;
@@ -73,3 +73,27 @@ if (head) {
   head.innerHTML = "hello world";
   console.log(head);
 }
+
+// const a: string = 'hello';
+// const b: String = 'hell';
+
+type World = "world" | "hell";
+const a: World = "world";
+
+const b = `hello ${a}`;
+
+//type Greeting = "hello world"
+type Greeting = `hello ${World}`;
+const c: Greeting = "hello hell";
+
+let arr: string[] = [];
+let arr2: Array<string> = [];
+function rest(a: any, ...args: string[]) {
+  console.log(a, args);
+}
+
+rest("1", "2", "3");
+
+const tuple: [string, number] = ["1", 1];
+tuple[2] = "hello";
+tuple.push("hello");
