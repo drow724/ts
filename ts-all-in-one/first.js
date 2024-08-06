@@ -30,7 +30,9 @@ const b = 5;
 const c = true;
 const d = undefined;
 const e = null;
+Array;
 function add(x, y) {
     return x + y;
 }
-const result = add(1, 2);
+let aa = 123;
+aa = "hello";

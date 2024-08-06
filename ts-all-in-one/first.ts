@@ -40,7 +40,20 @@ const c = true;
 const d = undefined;
 const e = null;
 
-function add(x: number, y: number) {
+// function add(x: number, y: number) {
+//   return x + y;
+// }
+// const result = add(1, 2);
+
+//js 변환 시 사라지는 부분;
+type Add = () => number;
+interface Minus {}
+Array<String>;
+
+function add(x: number, y: number): number;
+function add(x: any, y: any) {
   return x + y;
 }
-const result = add(1, 2);
+
+let aa = 123;
+aa = "hello" as unknown as number;
