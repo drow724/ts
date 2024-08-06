@@ -57,3 +57,19 @@ function add(x: any, y: any) {
 
 let aa = 123;
 aa = "hello" as unknown as number;
+
+try {
+  const array: string[] = [];
+  array.push("hello");
+} catch (error) {
+  error;
+}
+
+// const head: Element = document.querySelector("#head")!;
+// console.log(head);
+
+const head = document.querySelector("#head");
+if (head) {
+  head.innerHTML = "hello world";
+  console.log(head);
+}
