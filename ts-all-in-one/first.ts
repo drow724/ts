@@ -137,16 +137,59 @@
 // }
 // const b: B = { a: "hello" };
 
-function add(x: string | number, y: string | number): string | number {
-  return x + y;
+// function add(x: string | number, y: string | number): string | number {
+//   return x + y;
+// }
+
+// const result: string | number = add(1, 2);
+// add("1", "2");
+// add(1, "2");
+
+// //type A = string & number;
+// //type A = { hello: "world" } & { zero: "cho" };
+// type A = { hello: "world" } | { zero: "cho" };
+// //const a: A = { hello: "world", zero: "cho" };
+// const a: A = { hello: "world" };
+
+type Animal = { breath: true };
+type Mamal = Animal & { breed: true };
+type Human = Mamal & { think: true };
+
+const zerocho: Human = { breath: true, breed: true, think: true };
+
+interface A {
+  talk: () => void;
 }
 
-const result: string | number = add(1, 2);
-add("1", "2");
-add(1, "2");
+interface A {
+  eat: () => void;
+}
 
-//type A = string & number;
-//type A = { hello: "world" } & { zero: "cho" };
-type A = { hello: "world" } | { zero: "cho" };
-//const a: A = { hello: "world", zero: "cho" };
-const a: A = { hello: "world" };
+interface A {
+  shit: () => void;
+}
+
+interface A {
+  sleep: () => void;
+}
+
+const a: A = { talk() {}, eat() {}, shit() {}, sleep() {} };
+
+// interface B extends A {
+//   breed: true;
+// }
+
+interface B extends Human {
+  breed: true;
+}
+
+const b: B = { breath: true, breed: true, think: true };
+
+interface IProps {}
+
+type Type = string | number;
+
+enum EHello {
+  Left,
+  Right,
+}
