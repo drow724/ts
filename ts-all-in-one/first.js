@@ -9,30 +9,18 @@
 // const h: any = true;
 // const i: true = true;
 // const j: 5 = 5;
-// function add(x: number, y: number): number {
-//   return x + y;
-// }
-//const add: (x: number, y:number) => number = (x, y) => x + y;
-// type Add = (x: number, y: number) => number;
-// const add: Add = (x, y) => x + y;
-// interface Add {
-//   (x: number, y: number): number;
-// }
-// const add: Add = (x, y) => x + y;
-//const obj: { lat: number; lon: number } = { lat: 37.5, lon: 127.5 };
-const obj = { lat: 37.5, lon: 127.5 };
-const arr = ["123", "456"];
-const arr2 = [123, 456];
-const arr3 = [123, 456];
-const arr4 = [123, 456, "hello"];
-const a = "5";
-const b = 5;
-const c = true;
-const d = undefined;
-const e = null;
-Array;
-function add(x, y) {
-    return x + y;
-}
-let aa = 123;
-aa = "hello";
+const a = 0 /* EDirection.Up */;
+const b = 2 /* EDirection.Left */;
+const ODirection = {
+    Up: 0,
+    Down: 1,
+    Left: 2,
+    Right: 3,
+};
+const c = ODirection.Up;
+const d = ODirection.Left;
+function walk(dir) { }
+const obj = { a: "123", b: "hello", c: "world" };
+function run(dir) { }
+walk(2 /* EDirection.Left */);
+run(ODirection.Right);

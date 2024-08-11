@@ -27,7 +27,7 @@
 
 //const obj: { lat: number; lon: number } = { lat: 37.5, lon: 127.5 };
 
-const obj = { lat: 37.5, lon: 127.5 };
+//const obj = { lat: 37.5, lon: 127.5 };
 
 // const arr = ["123", "456"];
 // const arr2 = [123, 456];
@@ -46,54 +46,85 @@ const obj = { lat: 37.5, lon: 127.5 };
 // const result = add(1, 2);
 
 //js 변환 시 사라지는 부분;
-type Add = () => number;
-interface Minus {}
-Array<String>;
+// type Add = () => number;
+// interface Minus {}
+// Array<String>;
 
-function add(x: number, y: number): number;
-function add(x: any, y: any) {
-  return x + y;
-}
+// function add(x: number, y: number): number;
+// function add(x: any, y: any) {
+//   return x + y;
+// }
 
-let aa = 123;
-aa = "hello" as unknown as number;
+// let aa = 123;
+// aa = "hello" as unknown as number;
 
-try {
-  const array: string[] = [];
-  array.push("hello");
-} catch (error) {
-  error;
-}
+// try {
+//   const array: string[] = [];
+//   array.push("hello");
+// } catch (error) {
+//   error;
+// }
 
-// const head: Element = document.querySelector("#head")!;
-// console.log(head);
+// // const head: Element = document.querySelector("#head")!;
+// // console.log(head);
 
-const head = document.querySelector("#head");
-if (head) {
-  head.innerHTML = "hello world";
-  console.log(head);
-}
+// const head = document.querySelector("#head");
+// if (head) {
+//   head.innerHTML = "hello world";
+//   console.log(head);
+// }
 
 // const a: string = 'hello';
 // const b: String = 'hell';
 
-type World = "world" | "hell";
-const a: World = "world";
+// type World = "world" | "hell";
+// const a: World = "world";
 
-const b = `hello ${a}`;
+// const b = `hello ${a}`;
 
 //type Greeting = "hello world"
-type Greeting = `hello ${World}`;
-const c: Greeting = "hello hell";
+// type Greeting = `hello ${World}`;
+// const c: Greeting = "hello hell";
 
-let arr: string[] = [];
-let arr2: Array<string> = [];
-function rest(a: any, ...args: string[]) {
-  console.log(a, args);
+// let arr: string[] = [];
+// let arr2: Array<string> = [];
+// function rest(a: any, ...args: string[]) {
+//   console.log(a, args);
+// }
+
+// rest("1", "2", "3");
+
+// const tuple: [string, number] = ["1", 1];
+// tuple[2] = "hello";
+// tuple.push("hello");
+
+const enum EDirection {
+  Up,
+  Down,
+  Left,
+  Right,
 }
 
-rest("1", "2", "3");
+const a = EDirection.Up;
+const b = EDirection.Left;
 
-const tuple: [string, number] = ["1", 1];
-tuple[2] = "hello";
-tuple.push("hello");
+const ODirection = {
+  Up: 0,
+  Down: 1,
+  Left: 2,
+  Right: 3,
+} as const;
+
+const c = ODirection.Up;
+const d = ODirection.Left;
+
+function walk(dir: EDirection) {}
+
+const obj = { a: "123", b: "hello", c: "world" } as const;
+type key = (typeof obj)[keyof typeof obj];
+
+type Direction = (typeof ODirection)[keyof typeof ODirection];
+function run(dir: Direction) {}
+
+walk(EDirection.Left);
+run(ODirection.Right);
