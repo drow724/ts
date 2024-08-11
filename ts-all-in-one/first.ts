@@ -98,33 +98,55 @@
 // tuple[2] = "hello";
 // tuple.push("hello");
 
-const enum EDirection {
-  Up,
-  Down,
-  Left,
-  Right,
+// const enum EDirection {
+//   Up,
+//   Down,
+//   Left,
+//   Right,
+// }
+
+// const a = EDirection.Up;
+// const b = EDirection.Left;
+
+// const ODirection = {
+//   Up: 0,
+//   Down: 1,
+//   Left: 2,
+//   Right: 3,
+// } as const;
+
+// const c = ODirection.Up;
+// const d = ODirection.Left;
+
+// function walk(dir: EDirection) {}
+
+// const obj = { a: "123", b: "hello", c: "world" } as const;
+// type key = (typeof obj)[keyof typeof obj];
+
+// type Direction = (typeof ODirection)[keyof typeof ODirection];
+// function run(dir: Direction) {}
+
+// walk(EDirection.Left);
+// run(ODirection.Right);
+
+// type A = { a: string };
+// const a: A = { a: "hello" };
+
+// interface B {
+//   a: string;
+// }
+// const b: B = { a: "hello" };
+
+function add(x: string | number, y: string | number): string | number {
+  return x + y;
 }
 
-const a = EDirection.Up;
-const b = EDirection.Left;
+const result: string | number = add(1, 2);
+add("1", "2");
+add(1, "2");
 
-const ODirection = {
-  Up: 0,
-  Down: 1,
-  Left: 2,
-  Right: 3,
-} as const;
-
-const c = ODirection.Up;
-const d = ODirection.Left;
-
-function walk(dir: EDirection) {}
-
-const obj = { a: "123", b: "hello", c: "world" } as const;
-type key = (typeof obj)[keyof typeof obj];
-
-type Direction = (typeof ODirection)[keyof typeof ODirection];
-function run(dir: Direction) {}
-
-walk(EDirection.Left);
-run(ODirection.Right);
+//type A = string & number;
+//type A = { hello: "world" } & { zero: "cho" };
+type A = { hello: "world" } | { zero: "cho" };
+//const a: A = { hello: "world", zero: "cho" };
+const a: A = { hello: "world" };
