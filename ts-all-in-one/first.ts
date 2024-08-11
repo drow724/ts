@@ -151,45 +151,68 @@
 // //const a: A = { hello: "world", zero: "cho" };
 // const a: A = { hello: "world" };
 
-type Animal = { breath: true };
-type Mamal = Animal & { breed: true };
-type Human = Mamal & { think: true };
+// type Animal = { breath: true };
+// type Mamal = Animal & { breed: true };
+// type Human = Mamal & { think: true };
 
-const zerocho: Human = { breath: true, breed: true, think: true };
+// const zerocho: Human = { breath: true, breed: true, think: true };
 
-interface A {
-  talk: () => void;
-}
+// interface A {
+//   talk: () => void;
+// }
 
-interface A {
-  eat: () => void;
-}
+// interface A {
+//   eat: () => void;
+// }
 
-interface A {
-  shit: () => void;
-}
+// interface A {
+//   shit: () => void;
+// }
 
-interface A {
-  sleep: () => void;
-}
+// interface A {
+//   sleep: () => void;
+// }
 
-const a: A = { talk() {}, eat() {}, shit() {}, sleep() {} };
+// const a: A = { talk() {}, eat() {}, shit() {}, sleep() {} };
 
-// interface B extends A {
+// // interface B extends A {
+// //   breed: true;
+// // }
+
+// interface B extends Human {
 //   breed: true;
 // }
 
-interface B extends Human {
-  breed: true;
-}
+// const b: B = { breath: true, breed: true, think: true };
 
-const b: B = { breath: true, breed: true, think: true };
+// interface IProps {}
 
-interface IProps {}
+// type Type = string | number;
 
-type Type = string | number;
+// enum EHello {
+//   Left,
+//   Right,
+// }
 
-enum EHello {
-  Left,
-  Right,
-}
+// type A = string | number;
+
+// type B = string;
+
+// type C = string & number;
+
+type A = { name: string };
+
+type B = { age: number };
+
+type AB = A | B;
+
+// type C = { name: string; age: number };
+type C = A & B;
+
+// const ab: AB = { name: "zerocho" };
+//const ab: C = { name: "zerocho" };
+//const c: C = { name: "zerocho", age: 29 };
+//const c: AB = { name: "zerocho", age: 29 };
+// const c: C = { name: "zerocho", age: 29, married: false };
+const obj = { name: "zerocho", age: 29, married: false };
+const c: C = obj;
