@@ -217,22 +217,34 @@
 // const obj = { name: "zerocho", age: 29, married: false };
 // const c: C = obj;
 
-interface A {
-  a: string;
-}
-const obj = { a: "hello", b: "world" };
+// interface A {
+//   a: string;
+// }
+// const obj = { a: "hello", b: "world" };
 
-//잉여 속성 검사
-const obj1: A = obj;
+// //잉여 속성 검사
+// const obj1: A = obj;
 
-function a(callback: () => void): void {
-  //return "3";
-  return;
-}
+// function a(callback: () => void): void {
+//   //return "3";
+//   return;
+// }
 
-const b = a(() => {
-  return "3";
-});
+// const b = a(() => {
+//   return "3";
+// });
+
+// const c = human.talk() as unknown as string;
+// declare function forEach(arr: number[], callback: (el: number) => void): void;
+// declare let d: number;
+
+// let target: number[] = [];
+// forEach([1, 2, 3], (el) => target.push(el));
+// forEach([1, 2, 3], (el) => {
+//   target.push(el);
+// });
+
+// d = 5;
 
 interface Human {
   talk: () => void;
@@ -240,18 +252,24 @@ interface Human {
 
 const human: Human = {
   talk() {
-    return "abc";
+    return 3;
   },
 };
 
-const c = human.talk() as unknown as string;
-declare function forEach(arr: number[], callback: (el: number) => void): void;
-declare let d: number;
+//any는 타입 포기
+//const b: any = human.talk();
+// const b: unknown = human.talk();
+// (b as Human).talk();
 
-let target: number[] = [];
-forEach([1, 2, 3], (el) => target.push(el));
-forEach([1, 2, 3], (el) => {
-  target.push(el);
-});
+try {
+} catch (error) {
+  (error as Error).message;
+}
 
-d = 5;
+const b = human.talk() as unknown as number;
+b.toString();
+
+function a(): void {
+  //return undefined;
+  return null;
+}
