@@ -200,19 +200,58 @@
 
 // type C = string & number;
 
-type A = { name: string };
+// type A = { name: string };
 
-type B = { age: number };
+// type B = { age: number };
 
-type AB = A | B;
+// type AB = A | B;
 
 // type C = { name: string; age: number };
-type C = A & B;
+//type C = A & B;
 
 // const ab: AB = { name: "zerocho" };
 //const ab: C = { name: "zerocho" };
 //const c: C = { name: "zerocho", age: 29 };
 //const c: AB = { name: "zerocho", age: 29 };
 // const c: C = { name: "zerocho", age: 29, married: false };
-const obj = { name: "zerocho", age: 29, married: false };
-const c: C = obj;
+// const obj = { name: "zerocho", age: 29, married: false };
+// const c: C = obj;
+
+interface A {
+  a: string;
+}
+const obj = { a: "hello", b: "world" };
+
+//잉여 속성 검사
+const obj1: A = obj;
+
+function a(callback: () => void): void {
+  //return "3";
+  return;
+}
+
+const b = a(() => {
+  return "3";
+});
+
+interface Human {
+  talk: () => void;
+}
+
+const human: Human = {
+  talk() {
+    return "abc";
+  },
+};
+
+const c = human.talk() as unknown as string;
+declare function forEach(arr: number[], callback: (el: number) => void): void;
+declare let d: number;
+
+let target: number[] = [];
+forEach([1, 2, 3], (el) => target.push(el));
+forEach([1, 2, 3], (el) => {
+  target.push(el);
+});
+
+d = 5;

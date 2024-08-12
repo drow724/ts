@@ -9,18 +9,24 @@
 // const h: any = true;
 // const i: true = true;
 // const j: 5 = 5;
-const a = 0 /* EDirection.Up */;
-const b = 2 /* EDirection.Left */;
-const ODirection = {
-    Up: 0,
-    Down: 1,
-    Left: 2,
-    Right: 3,
+const obj = { a: "hello", b: "world" };
+//잉여 속성 검사
+const obj1 = obj;
+function a(callback) {
+    //return "3";
+    return;
+}
+const b = a(() => {
+    return "3";
+});
+const human = {
+    talk() {
+        return "abc";
+    },
 };
-const c = ODirection.Up;
-const d = ODirection.Left;
-function walk(dir) { }
-const obj = { a: "123", b: "hello", c: "world" };
-function run(dir) { }
-walk(2 /* EDirection.Left */);
-run(ODirection.Right);
+const c = human.talk();
+let target = [];
+forEach([1, 2, 3], (el) => target.push(el));
+forEach([1, 2, 3], (el) => {
+    target.push(el);
+});
