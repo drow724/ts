@@ -271,5 +271,5 @@ b.toString();
 
 function a(): void {
   //return undefined;
-  return null;
+  //return null;
 }
