@@ -403,16 +403,30 @@
 
 // export {};
 
-const x: {} = "hello";
-//const x: {} = null;
-const y: Object = "hi";
-const xx: object = "hi";
-const yy: object = { hello: "world" };
-const z: unknown = "hi";
+// const x: {} = "hello";
+// //const x: {} = null;
+// const y: Object = "hi";
+// const xx: object = "hi";
+// const yy: object = { hello: "world" };
+// const z: unknown = "hi";
 
-// unknown = {} | null | undefined
-if (z) {
-  z;
-} else {
-  z;
-}
+// // unknown = {} | null | undefined
+// if (z) {
+//   z;
+// } else {
+//   z;
+// }
+
+// interface A {
+//   readonly a: string;
+//   b: string;
+// }
+
+// const aaaa: A = { a: 'hello', b: 'world'};
+// aaaa.a = '123';
+
+//type A = { a: string, b: string, c: string, d: string};
+//type A = { [key: string]: number };
+type B = "Human" | "Mammal" | "Animal";
+type A = { [key in B]: B };
+const aaaa: A = { Human: "Animal", Mammal: "Human", Animal: "Mammal" };
