@@ -9,24 +9,18 @@
 // const h: any = true;
 // const i: true = true;
 // const j: 5 = 5;
-const obj = { a: "hello", b: "world" };
-//잉여 속성 검사
-const obj1 = obj;
-function a(callback) {
-    //return "3";
-    return;
+function catOrDog(a) {
+    if (a.meow) {
+        return false;
+    }
+    return true;
 }
-const b = a(() => {
-    return "3";
-});
-const human = {
-    talk() {
-        return "abc";
-    },
-};
-const c = human.talk();
-let target = [];
-forEach([1, 2, 3], (el) => target.push(el));
-forEach([1, 2, 3], (el) => {
-    target.push(el);
-});
+const cat = { meow: 3 };
+function pet(a) {
+    if (catOrDog(a)) {
+        console.log(a.bow);
+    }
+    if ("meow" in a) {
+        console.log(a.meow);
+    }
+}

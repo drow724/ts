@@ -246,105 +246,159 @@
 
 // d = 5;
 
-interface Human {
-  talk: () => void;
+// interface Human {
+//   talk: () => void;
+// }
+
+// const human: Human = {
+//   talk() {
+//     return 3;
+//   },
+// };
+
+// //any는 타입 포기
+// //const b: any = human.talk();
+// // const b: unknown = human.talk();
+// // (b as Human).talk();
+
+// try {
+// } catch (error) {
+//   (error as Error).message;
+// }
+
+// const b = human.talk() as unknown as number;
+// b.toString();
+
+// function a(): void {
+//   //return undefined;
+//   //return null;
+// }
+
+// function numOrStr(a: number | string) {
+//   //(a as number).toFixed(1);
+//   if (typeof a === "number") {
+//     a.toFixed(1);
+//   } else {
+//     a.charAt(3);
+//   }
+//   if (typeof a === "string") {
+//     a.charAt(3);
+//   }
+//   if (typeof a === "boolean") {
+//     a.toString();
+//   }
+// }
+
+// numOrStr("123");
+// numOrStr(3);
+
+// function numOrNumArray(a: number | number[]) {
+//   if (Array.isArray(a)) {
+//     a.concat(4);
+//   } else {
+//     a.toFixed(3);
+//   }
+// }
+
+// numOrNumArray(123);
+// numOrNumArray([1, 2, 3]);
+
+// class A {
+//   aaa() {}
+// }
+
+// class B {
+//   bbb() {}
+// }
+
+// function aOrB(param: A | B) {
+//   if (param instanceof A) {
+//     param.aaa();
+//   }
+// }
+
+// aOrB(new A());
+// aOrB(new B());
+
+// type C = { type: "c"; ccc: string };
+// type D = { type: "d"; ddd: string };
+// type E = { type: "e"; eee: string };
+
+// function typeCheck(e: C | D | E) {
+//   if (e.type === "c") {
+//     e.ccc;
+//   } else if (e.type === "d") {
+//     e.ddd;
+//   } else {
+//     e.eee;
+//   }
+//   if ("ccc" in e) {
+//     e.ccc;
+//   } else if ("ddd" in e) {
+//     e.ddd;
+//   } else {
+//     e.eee;
+//   }
+// }
+
+// const human = { type: 'human', talk()};
+// const doc = {type: 'doc', bow()};
+// const cat = {type: 'cat', moew()};
+
+// if('talk' in a) {
+//   A.
+// }
+
+interface Cat {
+  meow: number;
 }
 
-const human: Human = {
-  talk() {
-    return 3;
-  },
+interface Dog {
+  bow: number;
+}
+
+function catOrDog(a: Cat | Dog): a is Dog {
+  if ((a as Cat).meow) {
+    return false;
+  }
+  return true;
+}
+
+const cat: Cat | Dog = { meow: 3 };
+
+function pet(a: Cat | Dog) {
+  if (catOrDog(a)) {
+    console.log(a.bow);
+  }
+
+  if ("meow" in a) {
+    console.log(a.meow);
+  }
+}
+
+const isRejected = (
+  input: PromiseSettledResult<unknown>
+): input is PromiseRejectedResult => {
+  return input.status === "rejected";
 };
 
-//any는 타입 포기
-//const b: any = human.talk();
-// const b: unknown = human.talk();
-// (b as Human).talk();
+const isFulfilled = <T>(
+  input: PromiseSettledResult<T>
+): input is PromiseFulfilledResult<T> => {
+  return input.status === "fulfilled";
+};
 
-try {
-} catch (error) {
-  (error as Error).message;
-}
+//Promise -> Pending -> Settled(Resolved, Rejected)
 
-const b = human.talk() as unknown as number;
-b.toString();
+const promises = await Promise.allSettled([
+  Promise.resolve("a"),
+  Promise.resolve("b"),
+]);
 
-function a(): void {
-  //return undefined;
-  //return null;
-}
+//const errors = promises.filter(promise => promise.status === "rejected");
 
-function numOrStr(a: number | string) {
-  //(a as number).toFixed(1);
-  if (typeof a === "number") {
-    a.toFixed(1);
-  } else {
-    a.charAt(3);
-  }
-  if (typeof a === "string") {
-    a.charAt(3);
-  }
-  if (typeof a === "boolean") {
-    a.toString();
-  }
-}
+const errors = promises.filter(isRejected);
 
-numOrStr("123");
-numOrStr(3);
+const successes = promises.filter(isFulfilled);
 
-function numOrNumArray(a: number | number[]) {
-  if (Array.isArray(a)) {
-    a.concat(4);
-  } else {
-    a.toFixed(3);
-  }
-}
-
-numOrNumArray(123);
-numOrNumArray([1, 2, 3]);
-
-class A {
-  aaa() {}
-}
-
-class B {
-  bbb() {}
-}
-
-function aOrB(param: A | B) {
-  if (param instanceof A) {
-    param.aaa();
-  }
-}
-
-aOrB(new A());
-aOrB(new B());
-
-type C = { type: "c"; ccc: string };
-type D = { type: "d"; ddd: string };
-type E = { type: "e"; eee: string };
-
-function typeCheck(e: C | D | E) {
-  if (e.type === "c") {
-    e.ccc;
-  } else if (e.type === "d") {
-    e.ddd;
-  } else {
-    e.eee;
-  }
-  if ("ccc" in e) {
-    e.ccc;
-  } else if ("ddd" in e) {
-    e.ddd;
-  } else {
-    e.eee;
-  }
-}
-
-const human = { type: 'human', talk()};
-const doc = {type: 'doc', bow()};
-const cat = {type: 'cat', moew()};
-
-if('talk' in a) {
-  A.
-}
+export {};
