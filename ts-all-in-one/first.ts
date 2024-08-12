@@ -273,3 +273,78 @@ function a(): void {
   //return undefined;
   //return null;
 }
+
+function numOrStr(a: number | string) {
+  //(a as number).toFixed(1);
+  if (typeof a === "number") {
+    a.toFixed(1);
+  } else {
+    a.charAt(3);
+  }
+  if (typeof a === "string") {
+    a.charAt(3);
+  }
+  if (typeof a === "boolean") {
+    a.toString();
+  }
+}
+
+numOrStr("123");
+numOrStr(3);
+
+function numOrNumArray(a: number | number[]) {
+  if (Array.isArray(a)) {
+    a.concat(4);
+  } else {
+    a.toFixed(3);
+  }
+}
+
+numOrNumArray(123);
+numOrNumArray([1, 2, 3]);
+
+class A {
+  aaa() {}
+}
+
+class B {
+  bbb() {}
+}
+
+function aOrB(param: A | B) {
+  if (param instanceof A) {
+    param.aaa();
+  }
+}
+
+aOrB(new A());
+aOrB(new B());
+
+type C = { type: "c"; ccc: string };
+type D = { type: "d"; ddd: string };
+type E = { type: "e"; eee: string };
+
+function typeCheck(e: C | D | E) {
+  if (e.type === "c") {
+    e.ccc;
+  } else if (e.type === "d") {
+    e.ddd;
+  } else {
+    e.eee;
+  }
+  if ("ccc" in e) {
+    e.ccc;
+  } else if ("ddd" in e) {
+    e.ddd;
+  } else {
+    e.eee;
+  }
+}
+
+const human = { type: 'human', talk()};
+const doc = {type: 'doc', bow()};
+const cat = {type: 'cat', moew()};
+
+if('talk' in a) {
+  A.
+}
