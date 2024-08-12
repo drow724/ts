@@ -349,56 +349,70 @@
 //   A.
 // }
 
-interface Cat {
-  meow: number;
+// interface Cat {
+//   meow: number;
+// }
+
+// interface Dog {
+//   bow: number;
+// }
+
+// function catOrDog(a: Cat | Dog): a is Dog {
+//   if ((a as Cat).meow) {
+//     return false;
+//   }
+//   return true;
+// }
+
+// const cat: Cat | Dog = { meow: 3 };
+
+// function pet(a: Cat | Dog) {
+//   if (catOrDog(a)) {
+//     console.log(a.bow);
+//   }
+
+//   if ("meow" in a) {
+//     console.log(a.meow);
+//   }
+// }
+
+// const isRejected = (
+//   input: PromiseSettledResult<unknown>
+// ): input is PromiseRejectedResult => {
+//   return input.status === "rejected";
+// };
+
+// const isFulfilled = <T>(
+//   input: PromiseSettledResult<T>
+// ): input is PromiseFulfilledResult<T> => {
+//   return input.status === "fulfilled";
+// };
+
+// //Promise -> Pending -> Settled(Resolved, Rejected)
+
+// const promises = await Promise.allSettled([
+//   Promise.resolve("a"),
+//   Promise.resolve("b"),
+// ]);
+
+// //const errors = promises.filter(promise => promise.status === "rejected");
+
+// const errors = promises.filter(isRejected);
+
+// const successes = promises.filter(isFulfilled);
+
+// export {};
+
+const x: {} = "hello";
+//const x: {} = null;
+const y: Object = "hi";
+const xx: object = "hi";
+const yy: object = { hello: "world" };
+const z: unknown = "hi";
+
+// unknown = {} | null | undefined
+if (z) {
+  z;
+} else {
+  z;
 }
-
-interface Dog {
-  bow: number;
-}
-
-function catOrDog(a: Cat | Dog): a is Dog {
-  if ((a as Cat).meow) {
-    return false;
-  }
-  return true;
-}
-
-const cat: Cat | Dog = { meow: 3 };
-
-function pet(a: Cat | Dog) {
-  if (catOrDog(a)) {
-    console.log(a.bow);
-  }
-
-  if ("meow" in a) {
-    console.log(a.meow);
-  }
-}
-
-const isRejected = (
-  input: PromiseSettledResult<unknown>
-): input is PromiseRejectedResult => {
-  return input.status === "rejected";
-};
-
-const isFulfilled = <T>(
-  input: PromiseSettledResult<T>
-): input is PromiseFulfilledResult<T> => {
-  return input.status === "fulfilled";
-};
-
-//Promise -> Pending -> Settled(Resolved, Rejected)
-
-const promises = await Promise.allSettled([
-  Promise.resolve("a"),
-  Promise.resolve("b"),
-]);
-
-//const errors = promises.filter(promise => promise.status === "rejected");
-
-const errors = promises.filter(isRejected);
-
-const successes = promises.filter(isFulfilled);
-
-export {};
