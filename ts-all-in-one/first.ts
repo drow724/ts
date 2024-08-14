@@ -497,32 +497,41 @@
 // let obj: { a: string; b?: string } = { a: "hello", b: "world", c: "wow" };
 // obj = { a: "hello" };
 
-function add<T extends number | string, Q extends Object, S>(x: T, y: Q): S {
-  return x + y;
-}
+// function add<T extends number | string, Q extends Object, S>(x: T, y: Q): S {
+//   return x + y;
+// }
 
-add(1, 2);
-add("1", "2");
+// add(1, 2);
+// add("1", "2");
 
-add(1, "2");
-add("1", 2);
+// add(1, "2");
+// add("1", 2);
 
-function add<T extends { a: string }>(x: T): T {
-  return x;
-}
+// function add<T extends { a: string }>(x: T): T {
+//   return x;
+// }
 
-add(["1", "2", "3"]);
+// add(["1", "2", "3"]);
 
-function add<T extends (a: string) => number>(x: T): T {
-  return x;
-}
+// function add<T extends (a: string) => number>(x: T): T {
+//   return x;
+// }
 
-add((a) => +a);
+// add((a) => +a);
 
-function add<T extends abstract new (...args: any) => any>(x: T): T {
-  return x;
-}
+// function add<T extends abstract new (...args: any) => any>(x: T): T {
+//   return x;
+// }
 
-class A {}
-add(A);
-add(new A());
+// class A {}
+// add(A);
+// add(new A());
+
+const a = (a: number = 3, c: number = 5) => {
+  return "3";
+};
+
+const a = (b: { children: string } = { children: "zerocho" }) => {};
+
+const add = <T extends Object>(x: T, y: T) => ({ x, y });
+const result = add(1, 2);
