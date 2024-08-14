@@ -427,6 +427,62 @@
 
 //type A = { a: string, b: string, c: string, d: string};
 //type A = { [key: string]: number };
-type B = "Human" | "Mammal" | "Animal";
-type A = { [key in B]: B };
-const aaaa: A = { Human: "Animal", Mammal: "Human", Animal: "Mammal" };
+// type B = "Human" | "Mammal" | "Animal";
+// type A = { [key in B]: B };
+// const aaaa: A = { Human: "Animal", Mammal: "Human", Animal: "Mammal" };
+
+// class A {
+//   // a: string;
+//   // b: number;
+
+//   private a: string = "123";
+//   //protected a: string = "123";
+//   #b: number = 123;
+
+//   // constructor(a: string, b: number = 123) {
+//   //   this.a = "123";
+//   //   this.b = 123;
+//   // }
+
+//   method() {
+//     console.log(this.a, this.#b);
+//   }
+// }
+
+// //const a = new A("123", 123);
+
+// //new A();
+// type AA = A;
+// //const a: A = new A("123");
+// const b: typeof A = A;
+
+interface A {
+  readonly a: string;
+  b: string;
+  c: string;
+}
+
+abstract class B implements A {
+  private readonly a: string = "123";
+  protected b: string = "world";
+  public c: string = "wow";
+
+  abstract method(): void;
+  method2() {
+    console.log(this.a);
+    console.log(this.b);
+    console.log(this.c);
+  }
+}
+
+class C extends B {
+  method() {
+    console.log(this.a);
+    console.log(this.b);
+    console.log(this.c);
+  }
+}
+
+new C().a;
+new C().b;
+new C().c;

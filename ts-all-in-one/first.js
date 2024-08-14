@@ -9,18 +9,25 @@
 // const h: any = true;
 // const i: true = true;
 // const j: 5 = 5;
-function catOrDog(a) {
-    if (a.meow) {
-        return false;
+class B {
+    constructor() {
+        this.a = "123";
+        this.b = "world";
+        this.c = "wow";
     }
-    return true;
-}
-const cat = { meow: 3 };
-function pet(a) {
-    if (catOrDog(a)) {
-        console.log(a.bow);
-    }
-    if ("meow" in a) {
-        console.log(a.meow);
+    method() {
+        console.log(this.a);
+        console.log(this.b);
+        console.log(this.c);
     }
 }
+class C extends B {
+    method() {
+        console.log(this.a);
+        console.log(this.b);
+        console.log(this.c);
+    }
+}
+new C().a;
+new C().b;
+new C().c;
