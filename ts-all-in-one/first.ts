@@ -522,3 +522,7 @@ add((a) => +a);
 function add<T extends abstract new (...args: any) => any>(x: T): T {
   return x;
 }
+
+class A {}
+add(A);
+add(new A());
