@@ -456,33 +456,69 @@
 // //const a: A = new A("123");
 // const b: typeof A = A;
 
-interface A {
-  readonly a: string;
-  b: string;
-  c: string;
+// interface A {
+//   readonly a: string;
+//   b: string;
+//   c: string;
+// }
+
+// abstract class B implements A {
+//   private readonly a: string = "123";
+//   protected b: string = "world";
+//   public c: string = "wow";
+
+//   abstract method(): void;
+//   method2() {
+//     console.log(this.a);
+//     console.log(this.b);
+//     console.log(this.c);
+//   }
+// }
+
+// class C extends B {
+//   method() {
+//     console.log(this.a);
+//     console.log(this.b);
+//     console.log(this.c);
+//   }
+// }
+
+// new C().a;
+// new C().b;
+// new C().c;
+
+// function abc(a: number, b?: number, c?: number, ...args: number[]) {}
+
+// abc(1);
+// abc(1, 2);
+// abc(1, 2, 3);
+// abc(1, 2, 3, 4);
+
+// let obj: { a: string; b?: string } = { a: "hello", b: "world", c: "wow" };
+// obj = { a: "hello" };
+
+function add<T extends number | string, Q extends Object, S>(x: T, y: Q): S {
+  return x + y;
 }
 
-abstract class B implements A {
-  private readonly a: string = "123";
-  protected b: string = "world";
-  public c: string = "wow";
+add(1, 2);
+add("1", "2");
 
-  abstract method(): void;
-  method2() {
-    console.log(this.a);
-    console.log(this.b);
-    console.log(this.c);
-  }
+add(1, "2");
+add("1", 2);
+
+function add<T extends { a: string }>(x: T): T {
+  return x;
 }
 
-class C extends B {
-  method() {
-    console.log(this.a);
-    console.log(this.b);
-    console.log(this.c);
-  }
+add(["1", "2", "3"]);
+
+function add<T extends (a: string) => number>(x: T): T {
+  return x;
 }
 
-new C().a;
-new C().b;
-new C().c;
+add((a) => +a);
+
+function add<T extends abstract new (...args: any) => any>(x: T): T {
+  return x;
+}
