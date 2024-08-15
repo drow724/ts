@@ -536,45 +536,84 @@
 // const add = <T extends Object>(x: T, y: T) => ({ x, y });
 // const result = add(1, 2);
 
-interface Array<T> {
-  forEach(
-    callbackFn: (value: T, index: number, array: T[]) => void,
-    thisArg?: any
-  ): void;
-  map<U>(
-    callbackFn: (value: T, index: number, array: T[]) => U,
-    thisArg?: any
-  ): U[];
-  filter<S extends T>(
-    predicate: (value: T, index: number, array: T[]) => value is S,
-    thisArg?: any
-  ): S[];
-  filter(
-    predicate: (value: T, index: number, array: T[]) => unknown,
-    thisArg?: any
-  ): T[];
+// interface Array<T> {
+//   forEach(
+//     callbackFn: (value: T, index: number, array: T[]) => void,
+//     thisArg?: any
+//   ): void;
+//   map<U>(
+//     callbackFn: (value: T, index: number, array: T[]) => U,
+//     thisArg?: any
+//   ): U[];
+//   filter<S extends T>(
+//     predicate: (value: T, index: number, array: T[]) => value is S,
+//     thisArg?: any
+//   ): S[];
+//   filter(
+//     predicate: (value: T, index: number, array: T[]) => unknown,
+//     thisArg?: any
+//   ): T[];
+// }
+// const a: Array<number> = [1, 2, 3];
+// [1, 2, 3].forEach((item) => console.log(item));
+// ["1", "2", "3"].forEach((item) => console.log(item));
+// [true, true, false].forEach((item) => console.log(item));
+// [true, "1", 3].forEach((item) => console.log(item));
+
+// function add<T>(x: T, y: T) {
+//   return x;
+// }
+
+// add("1", 2);
+// add(1, 2);
+// add("1", "2");
+
+// const numberAdd = add<number>;
+// numberAdd(1, 2);
+// numberAdd("1", "2");
+
+// const strings = [1, 2, 3].map((item) => item.toString());
+
+// const predicate = (value: string | number): value is string =>
+//   typeof value === "string";
+
+// const filtered = ["1", 2, "3", 4, "5"].filter(predicate);
+
+interface Arr<T> {
+  forEach(callback: (item: T) => void): void;
 }
-const a: Array<number> = [1, 2, 3];
-[1, 2, 3].forEach((item) => console.log(item));
-["1", "2", "3"].forEach((item) => console.log(item));
-[true, true, false].forEach((item) => console.log(item));
-[true, "1", 3].forEach((item) => console.log(item));
 
-function add<T>(x: T, y: T) {
-  return x;
-}
+const a: Arr<number> = [1, 2, 3];
 
-add("1", 2);
-add(1, 2);
-add("1", "2");
+a.forEach((item) => {
+  console.log(item);
+  item.toFixed(1);
+});
 
-const numberAdd = add<number>;
-numberAdd(1, 2);
-numberAdd("1", "2");
+a.forEach((item) => {
+  console.log(item);
+  return "3";
+});
 
-const strings = [1, 2, 3].map((item) => item.toString());
+const b: Arr<string> = ["1", "2", "3"];
 
-const predicate = (value: string | number): value is string =>
-  typeof value === "string";
+b.forEach((item) => {
+  console.log(item);
+  item.charAt(1);
+});
 
-const filtered = ["1", 2, "3", 4, "5"].filter(predicate);
+b.forEach((item) => {
+  console.log(item);
+  return "3";
+});
+
+const c: Arr<boolean> = [true, false];
+
+c.forEach((item) => {
+  console.log(item);
+});
+
+const d = c.forEach((item) => {
+  console.log(item);
+  return "3";
+});
