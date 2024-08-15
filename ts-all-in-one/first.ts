@@ -527,11 +527,41 @@
 // add(A);
 // add(new A());
 
-const a = (a: number = 3, c: number = 5) => {
-  return "3";
-};
+// const a = (a: number = 3, c: number = 5) => {
+//   return "3";
+// };
 
-const a = (b: { children: string } = { children: "zerocho" }) => {};
+// const a = (b: { children: string } = { children: "zerocho" }) => {};
 
-const add = <T extends Object>(x: T, y: T) => ({ x, y });
-const result = add(1, 2);
+// const add = <T extends Object>(x: T, y: T) => ({ x, y });
+// const result = add(1, 2);
+
+interface Array<T> {
+  forEach(
+    callbackFn: (value: T, index: number, array: T[]) => void,
+    thisArg?: any
+  ): void;
+  map<U>(
+    callbackFn: (value: T, index: number, array: T[]) => U,
+    thisArg?: any
+  ): U[];
+}
+const a: Array<number> = [1, 2, 3];
+[1, 2, 3].forEach((item) => console.log(item));
+["1", "2", "3"].forEach((item) => console.log(item));
+[true, true, false].forEach((item) => console.log(item));
+[true, "1", 3].forEach((item) => console.log(item));
+
+function add<T>(x: T, y: T) {
+  return x;
+}
+
+add("1", 2);
+add(1, 2);
+add("1", "2");
+
+const numberAdd = add<number>;
+numberAdd(1, 2);
+numberAdd("1", "2");
+
+const strings = [1, 2, 3].map((item) => item.toString());
