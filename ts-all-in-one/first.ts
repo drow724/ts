@@ -579,21 +579,21 @@
 
 // const filtered = ["1", 2, "3", 4, "5"].filter(predicate);
 
-interface Arr<T> {
-  forEach(callback: (item: T) => void): void;
-  map<S>(callback: (v: T) => S): S[];
-  filter<S extends T>(callback: (v: T) => v is S): S[];
-  filter(callback: (value: T) => boolean): T[];
-}
-[].forEach;
-const a: Arr<number> = [1, 2, 3];
+// interface Arr<T> {
+//   forEach(callback: (item: T) => void): void;
+//   map<S>(callback: (v: T) => S): S[];
+//   filter<S extends T>(callback: (v: T) => v is S): S[];
+//   filter(callback: (value: T) => boolean): T[];
+// }
 
-const b = a.filter((v) => v % 2 === 0);
+// const a: Arr<number> = [1, 2, 3];
 
-const c: Arr<number | string> = [1, "2", 3, "4", 5];
+// const b = a.filter((v) => v % 2 === 0);
 
-const d = c.filter((v) => typeof v === "string");
-const e = c.filter((v) => typeof v === "number");
+// const c: Arr<number | string> = [1, "2", 3, "4", 5];
+
+// const d = c.filter((v) => typeof v === "string");
+// const e = c.filter((v) => typeof v === "number");
 // const b = a.map((v) => v + 1);
 // const c = a.map((v) => v.toString());
 // const d = a.map((v) => v % 2 === 0);
@@ -632,3 +632,32 @@ const e = c.filter((v) => typeof v === "number");
 //   console.log(item);
 //   return "3";
 // });
+
+// function a(x: string): number {
+//   return +x;
+// }
+// a("1");
+
+// type B = (x: string) => number | string;
+// const b: B = a;
+// const c: typeof a = b;
+
+// function a(x: string | number): number {
+//   return 0;
+// }
+// a("1");
+
+// type B = (x: string) => number | string;
+// const b: B = a;
+// const c: typeof a = b;
+
+function add(x: number, y: number): number;
+function add(x: string, y: string): string;
+function add(x: number | string, y: number | string): number | string {
+  return x + y;
+}
+
+let a: string | number;
+
+if (typeof a === "strubg") {
+}
