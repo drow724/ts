@@ -659,5 +659,6 @@ function add(x: number | string, y: number | string): number | string {
 
 let a: string | number;
 
-if (typeof a === "strubg") {
+if (typeof a === "string") {
+  a.
 }
