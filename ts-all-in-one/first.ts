@@ -581,39 +581,46 @@
 
 interface Arr<T> {
   forEach(callback: (item: T) => void): void;
+  map<S>(callback: (v: T) => S): S[];
 }
 
 const a: Arr<number> = [1, 2, 3];
 
-a.forEach((item) => {
-  console.log(item);
-  item.toFixed(1);
-});
+const b = a.map((v) => v + 1);
+const c = a.map((v) => v.toString());
+const d = a.map((v) => v % 2 === 0);
 
-a.forEach((item) => {
-  console.log(item);
-  return "3";
-});
+const e: Arr<string> = ["1", "2", "3"];
+const f = e.map((v) => +v);
+// a.forEach((item) => {
+//   console.log(item);
+//   item.toFixed(1);
+// });
 
-const b: Arr<string> = ["1", "2", "3"];
+// a.forEach((item) => {
+//   console.log(item);
+//   return "3";
+// });
 
-b.forEach((item) => {
-  console.log(item);
-  item.charAt(1);
-});
+// const b: Arr<string> = ["1", "2", "3"];
 
-b.forEach((item) => {
-  console.log(item);
-  return "3";
-});
+// b.forEach((item) => {
+//   console.log(item);
+//   item.charAt(1);
+// });
 
-const c: Arr<boolean> = [true, false];
+// b.forEach((item) => {
+//   console.log(item);
+//   return "3";
+// });
 
-c.forEach((item) => {
-  console.log(item);
-});
+// const c: Arr<boolean> = [true, false];
 
-const d = c.forEach((item) => {
-  console.log(item);
-  return "3";
-});
+// c.forEach((item) => {
+//   console.log(item);
+// });
+
+// const d = c.forEach((item) => {
+//   console.log(item);
+//   return "3";
+// });
