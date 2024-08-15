@@ -545,6 +545,14 @@ interface Array<T> {
     callbackFn: (value: T, index: number, array: T[]) => U,
     thisArg?: any
   ): U[];
+  filter<S extends T>(
+    predicate: (value: T, index: number, array: T[]) => value is S,
+    thisArg?: any
+  ): S[];
+  filter(
+    predicate: (value: T, index: number, array: T[]) => unknown,
+    thisArg?: any
+  ): T[];
 }
 const a: Array<number> = [1, 2, 3];
 [1, 2, 3].forEach((item) => console.log(item));
@@ -565,3 +573,8 @@ numberAdd(1, 2);
 numberAdd("1", "2");
 
 const strings = [1, 2, 3].map((item) => item.toString());
+
+const predicate = (value: string | number): value is string =>
+  typeof value === "string";
+
+const filtered = ["1", 2, "3", 4, "5"].filter(predicate);
