@@ -692,41 +692,86 @@
 // }
 
 // const c = new A().add("1", 2);
-interface Axios {
-  get(): void;
+// interface Axios {
+//   get(): void;
+// }
+
+// type A = "";
+
+// class CustomError extends Error {
+//   response?: {
+//     data: any;
+//   };
+// }
+
+// declare const axois: Axios;
+
+// (async () => {
+//   try {
+//     await axois.get();
+//   } catch (err: unknown) {
+//     // console.error((err as CustomError).response?.data);
+//     // err.response?.data;
+
+//     const customError = err as CustomError;
+
+//     console.error(customError.response?.data);
+//     customError.response?.data;
+
+//     if (err instanceof CustomError) {
+//       console.error(err.response?.data);
+//       err.response?.data;
+//     }
+//   }
+// })();
+
+// const a = <T = unknown>(v: T): T => {
+//   return v;
+// };
+
+// const c = a(3);
+
+interface Profile {
+  name: string;
+  age: number;
+  married: boolean;
 }
 
-type A = "";
+// interface NewProfile {
+//   name: string;
+//   age: number;
+// }
 
-class CustomError extends Error {
-  response?: {
-    data: any;
-  };
-}
-
-declare const axois: Axios;
-
-(async () => {
-  try {
-    await axois.get();
-  } catch (err: unknown) {
-    // console.error((err as CustomError).response?.data);
-    // err.response?.data;
-
-    const customError = err as CustomError;
-
-    console.error(customError.response?.data);
-    customError.response?.data;
-
-    if (err instanceof CustomError) {
-      console.error(err.response?.data);
-      err.response?.data;
-    }
-  }
-})();
-
-const a = <T = unknown>(v: T): T => {
-  return v;
+const zerocho: Profile = {
+  name: "zerocho",
+  age: 29,
+  married: false,
 };
 
-const c = a(3);
+// const newZerocho: NewProfile = {
+//   name: "zerocho",
+//   age: 29,
+// };
+
+// const newZerocho: Partial<Profile> = {
+//   name: "zerocho",
+//   age: 29,
+// };
+
+type Name = Profile["name"];
+
+type P<T> = {
+  [K in keyof T]?: T[K];
+};
+
+P<Profile>
+{
+  name?: string,
+  age?: number,
+  married?: boolean
+}
+
+const newZerocho: P<Profile> = {
+  name: "zerocho",
+  age: 29,
+};
