@@ -785,7 +785,20 @@ const pickZerocho: NewPick<Profile, "name" | "age"> = {
   age: 29,
 };
 
-const omitZerocho: Omit<Profile, "married"> = {
+type Animal = "Cat" | "Dog" | "Human";
+type Mammal = Exclude<Animal, "Human">;
+type Human = Extract<Animal, "Cat" | "Dog">;
+
+type A = Exclude<keyof Profile, "married">;
+
+const excludeZerocho: Pick<Profile, Exclude<keyof Profile, "married">> = {
+  name: "zerocho",
+  age: 29,
+};
+
+type O<T, S extends keyof any> = Pick<T, Exclude<keyof T, S>>;
+
+const omitZerocho: O<Profile, "married"> = {
   name: "zerocho",
   age: 29,
 };
