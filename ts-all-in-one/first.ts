@@ -663,32 +663,70 @@
 //   a.
 // }
 
-declare function add(x: number, y: number): number;
-//declare function add(x: number, y: number, z?: number): number;
-declare function add(x: number, y: number, z: number): number;
-declare function add(x: string, y: string): string;
+// declare function add(x: number, y: number): number;
+// //declare function add(x: number, y: number, z?: number): number;
+// declare function add(x: number, y: number, z: number): number;
+// declare function add(x: string, y: string): string;
 
-add(1, 2);
-add(2, 3, 4);
-add("1", "2");
+// add(1, 2);
+// add(2, 3, 4);
+// add("1", "2");
 
-interface Add {
-  (x: number, y: number): number;
-  (x: string, y: string): string;
+// interface Add {
+//   (x: number, y: number): number;
+//   (x: string, y: string): string;
+// }
+
+// const add: Add = (x: any, y: any) => x + y;
+
+// add(1, 2);
+// add(2, 3, 4);
+// add("1", 2);
+
+// class A {
+//   add(x: number, y: number): number;
+//   add(x: string, y: string): string;
+//   add(x: any, y: any) {
+//     return x + y;
+//   }
+// }
+
+// const c = new A().add("1", 2);
+interface Axios {
+  get(): void;
 }
 
-const add: Add = (x: any, y: any) => x + y;
+type A = "";
 
-add(1, 2);
-add(2, 3, 4);
-add("1", 2);
+class CustomError extends Error {
+  response?: {
+    data: any;
+  };
+}
 
-class A {
-  add(x: number, y: number): number;
-  add(x: string, y: string): string;
-  add(x: any, y: any) {
-    return x + y;
+declare const axois: Axios;
+
+(async () => {
+  try {
+    await axois.get();
+  } catch (err: unknown) {
+    // console.error((err as CustomError).response?.data);
+    // err.response?.data;
+
+    const customError = err as CustomError;
+
+    console.error(customError.response?.data);
+    customError.response?.data;
+
+    if (err instanceof CustomError) {
+      console.error(err.response?.data);
+      err.response?.data;
+    }
   }
-}
+})();
 
-const c = new A().add("1", 2);
+const a = <T = unknown>(v: T): T => {
+  return v;
+};
+
+const c = a(3);
