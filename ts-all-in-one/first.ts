@@ -758,20 +758,34 @@ const zerocho: Profile = {
 //   age: 29,
 // };
 
-type Name = Profile["name"];
+// type Name = Profile["name"];
 
-type P<T> = {
-  [K in keyof T]?: T[K];
+// type P<T> = {
+//   [K in keyof T]?: T[K];
+// };
+
+// P<Profile>
+// {
+//   name?: string,
+//   age?: number,
+//   married?: boolean
+// }
+
+// const newZerocho: P<Profile> = {
+//   name: "zerocho",
+//   age: 29,
+// };
+
+type NewPick<T, S extends keyof T> = {
+  [K in S]: T[K];
 };
 
-P<Profile>
-{
-  name?: string,
-  age?: number,
-  married?: boolean
-}
+const pickZerocho: NewPick<Profile, "name" | "age"> = {
+  name: "zerocho",
+  age: 29,
+};
 
-const newZerocho: P<Profile> = {
+const omitZerocho: Omit<Profile, "married"> = {
   name: "zerocho",
   age: 29,
 };
