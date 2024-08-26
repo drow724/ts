@@ -859,7 +859,68 @@
 
 //const c: R<string, number> = { a: 3, b: 5, c: 7 };
 
-type A = string | null | undefined | boolean | number;
-type B = N<A>;
+// type A = string | null | undefined | boolean | number;
+// type B = N<A>;
 
-type N<T> = T extends null | undefined ? never : T;
+// type N<T> = T extends null | undefined ? never : T;
+
+function zip(
+  x: number,
+  y: string,
+  z: boolean
+): { x: number; y: string; z: boolean } {
+  return { x, y, z };
+}
+
+//type Params = Parameters<typeof zip>;
+//type First = Params[0];
+
+type P<T extends (...args: any) => any> = T extends (...args: infer A) => any
+  ? A
+  : never;
+
+type Params = P<typeof zip>;
+
+type First = Params[0];
+
+// type Returns = Returns<typeof zip>;
+// type F = Returns[0];
+
+type R<T extends (...args: any) => any> = T extends (...args: any) => infer A
+  ? A
+  : never;
+
+type Returns = P<typeof zip>;
+type F = Returns[0];
+
+// type C<T extends abstract new (...args: any) => any> = T extends abstract new (
+//   ...args: infer A
+// ) => any
+//   ? A
+//   : any;
+
+// type I<T extends abstract new (...args: any) => any> = T extends abstract new (
+//   ...args: any
+// ) => infer A
+//   ? A
+//   : any;
+
+class A {
+  a: string;
+  b: number;
+  c: boolean;
+  constructor(a: string, b: number, c: boolean) {
+    this.a = a;
+    this.b = b;
+    this.c = c;
+  }
+}
+
+const c = new A("123", 456, true);
+type C = ConstructorParameters<typeof A>;
+type I = InstanceType<typeof A>;
+
+const a: A = new A("123", 456, true);
+
+const str = "Hello World";
+const s: Lowercase<typeof str>;
