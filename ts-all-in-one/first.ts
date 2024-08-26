@@ -731,22 +731,22 @@
 
 // const c = a(3);
 
-interface Profile {
-  name: string;
-  age: number;
-  married: boolean;
-}
+// interface Profile {
+//   name: string;
+//   age: number;
+//   married: boolean;
+// }
 
 // interface NewProfile {
 //   name: string;
 //   age: number;
 // }
 
-const zerocho: Profile = {
-  name: "zerocho",
-  age: 29,
-  married: false,
-};
+// const zerocho: Profile = {
+//   name: "zerocho",
+//   age: 29,
+//   married: false,
+// };
 
 // const newZerocho: NewProfile = {
 //   name: "zerocho",
@@ -776,29 +776,90 @@ const zerocho: Profile = {
 //   age: 29,
 // };
 
-type NewPick<T, S extends keyof T> = {
-  [K in S]: T[K];
-};
+// type NewPick<T, S extends keyof T> = {
+//   [K in S]: T[K];
+// };
 
-const pickZerocho: NewPick<Profile, "name" | "age"> = {
-  name: "zerocho",
-  age: 29,
-};
+// const pickZerocho: NewPick<Profile, "name" | "age"> = {
+//   name: "zerocho",
+//   age: 29,
+// };
 
-type Animal = "Cat" | "Dog" | "Human";
-type Mammal = Exclude<Animal, "Human">;
-type Human = Extract<Animal, "Cat" | "Dog">;
+// type Animal = "Cat" | "Dog" | "Human";
+// type Mammal = Exclude<Animal, "Human">;
+// type Human = Extract<Animal, "Cat" | "Dog">;
 
-type A = Exclude<keyof Profile, "married">;
+// type A = Exclude<keyof Profile, "married">;
 
-const excludeZerocho: Pick<Profile, Exclude<keyof Profile, "married">> = {
-  name: "zerocho",
-  age: 29,
-};
+// const excludeZerocho: Pick<Profile, Exclude<keyof Profile, "married">> = {
+//   name: "zerocho",
+//   age: 29,
+// };
 
-type O<T, S extends keyof any> = Pick<T, Exclude<keyof T, S>>;
+// type O<T, S extends keyof any> = Pick<T, Exclude<keyof T, S>>;
 
-const omitZerocho: O<Profile, "married"> = {
-  name: "zerocho",
-  age: 29,
-};
+// const omitZerocho: O<Profile, "married"> = {
+//   name: "zerocho",
+//   age: 29,
+// };
+
+// interface Profile {
+//   name?: string;
+//   age?: number;
+//   married?: boolean;
+// }
+
+// type Name = Profile["name"];
+
+// type R<T> = {
+//   [Key in keyof T]-?: T[Key];
+// };
+
+// const zerocho: R<Profile> = {
+//   name: "zerocho",
+//   age: 29,
+//   married: false,
+// };
+
+// zerocho.name = "nero";
+
+// interface Profile {
+//   readonly name?: string;
+//   readonly age?: number;
+//   readonly married?: boolean;
+// }
+
+// type Name = Profile["name"];
+
+// type R<T> = {
+//   -readonly [Key in keyof T]-?: T[Key];
+// };
+
+// const zerocho: R<Profile> = {
+//   name: "zerocho",
+//   age: 29,
+//   married: false,
+// };
+
+// zerocho.name = "nero";
+
+// interface Obj {
+//   [key: string]: number;
+// }
+
+// const a: Obj = { a: 3, b: 5, C: 7 };
+
+// const b: Record<string, number> = { a: 3, b: 5, c: 7 };
+
+// type R<T extends keyof any, S> = {
+//   [Key in T]: S;
+// };
+
+//const a: R<Profile, number> = { a: 3, b: 5, c: 7 };
+
+//const c: R<string, number> = { a: 3, b: 5, c: 7 };
+
+type A = string | null | undefined | boolean | number;
+type B = N<A>;
+
+type N<T> = T extends null | undefined ? never : T;
