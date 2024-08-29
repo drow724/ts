@@ -924,3 +924,29 @@ type F = Returns[0];
 
 // const str = "Hello World";
 // const s: Lowercase<typeof str>;
+
+const p1 = Promise.resolve(1) //Promise<number>
+  .then((a) => a + 1) //Promise<number>,
+  .then((a) => a + 1) //Promise<number>,
+  .then((a) => a.toString()); //Promise<string>
+
+const p2 = Promise.resolve(1); //Promise<number>
+const p3 = new Promise((res, rej) => {
+  //Promise<unknown>
+  setTimeout(res, 1000);
+});
+
+//type result = Promise<Promise<Promise<number>>>;
+type result = Awaited<Promise<Promise<Promise<number>>>>;
+type result1 = Awaited<{ then(onfulfilled: (v: number) => number): any }>; //thenable
+
+Promise.all([p1, p2, p3]).then((result) => {
+  // { '0': string, '1': number, '2': unknown, 'length':3 }
+  console.log(result);
+});
+
+//T = [p1, p2, p3] {'0': p1, '1': p2, '2': p3, 'length': 3}
+//keyof T = '0' | '1' | '2' | 'length'
+const arr = [1, 2, 3] as const;
+type Arr = keyof typeof arr;
+const key: Arr = 4;
