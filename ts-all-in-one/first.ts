@@ -950,3 +950,15 @@ Promise.all([p1, p2, p3]).then((result) => {
 const arr = [1, 2, 3] as const;
 type Arr = keyof typeof arr;
 const key: Arr = 4;
+
+function a(this: Window | typeof obj, param: string) {
+  console.log(this.name);
+}
+
+const obj = { name: "zerocho" };
+const b = a.bind(obj);
+b(); //zerocho
+
+type T = ThisParameterType<typeof a>;
+
+type NoThis = OmitThisParameter<typeof a>;
