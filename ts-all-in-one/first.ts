@@ -905,22 +905,22 @@ type F = Returns[0];
 //   ? A
 //   : any;
 
-class A {
-  a: string;
-  b: number;
-  c: boolean;
-  constructor(a: string, b: number, c: boolean) {
-    this.a = a;
-    this.b = b;
-    this.c = c;
-  }
-}
+// class A {
+//   a: string;
+//   b: number;
+//   c: boolean;
+//   constructor(a: string, b: number, c: boolean) {
+//     this.a = a;
+//     this.b = b;
+//     this.c = c;
+//   }
+// }
 
-const c = new A("123", 456, true);
-type C = ConstructorParameters<typeof A>;
-type I = InstanceType<typeof A>;
+// const c = new A("123", 456, true);
+// type C = ConstructorParameters<typeof A>;
+// type I = InstanceType<typeof A>;
 
-const a: A = new A("123", 456, true);
+// const a: A = new A("123", 456, true);
 
-const str = "Hello World";
-const s: Lowercase<typeof str>;
+// const str = "Hello World";
+// const s: Lowercase<typeof str>;
