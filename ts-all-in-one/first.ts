@@ -1051,55 +1051,135 @@ type Result3 = Intersection<{ a(pa: 1 | 2): void; b(pb: 2 | 3): void }>;
 //   return x as any;
 // }
 
-const q = double("hi");
-const w = double(123);
+// const q = double("hi");
+// const w = double(123);
 
-function double<T extends [T] extends [string] ? string : number>(
-  x: T
-): [T] extends [string] ? string : number {
-  return x;
-}
-
-declare class A {
-  constructor(name: string);
-}
-
-function A(name: string) {
-  return new A(name);
-}
-
-new A("zerocho");
-A("zerocho");
-
-function Ex() {
-  return "hello";
-}
-
-namespace Ex {
-  export const a = "world";
-  export type B = number;
-}
-
-// enum Ex {
+// function double<T extends [T] extends [string] ? string : number>(
+//   x: T
+// ): [T] extends [string] ? string : number {
+//   return x;
 // }
 
-Ex(); //"hello"
-Ex.a; // "world";
+// declare class A {
+//   constructor(name: string);
+// }
 
-const b: Ex.B = 123;
+// function A(name: string) {
+//   return new A(name);
+// }
 
-function cc() {}
-cc.a = "b";
-cc.c = "t";
+// new A("zerocho");
+// A("zerocho");
 
-namespace Example {
-  interface: Inner {
-    test: string;
-  }
-  type test2 = number;
-  export const a = 'hi'
+// function Ex() {
+//   return "hello";
+// }
+
+// namespace Ex {
+//   export const a = "world";
+//   export type B = number;
+// }
+
+// // enum Ex {
+// // }
+
+// Ex(); //"hello"
+// Ex.a; // "world";
+
+// const b: Ex.B = 123;
+
+// function cc() {}
+// cc.a = "b";
+// cc.c = "t";
+
+// namespace Example {
+//   interface: Inner {
+//     test: string;
+//   }
+//   type test2 = number;
+//   export const a = 'hi'
+// }
+
+// enum E {}
+
+// class B {}
+
+function startAndEnd(start = "start", end = "end") {
+  return function DealDecorator<This, Args extends any[], Return>(
+    orginalMethod: (this: This, ...args: Args) => Return,
+    context: ClassMethodDecoratorContext<
+      This,
+      (this: This, ...args: Args) => Return
+    > //ClassMethodDecoratorContext
+  ) {
+    if (context.kind === "method") {
+      return function replacementMethod(this: This, ...args: Args) {
+        console.log(context.name, start);
+        const result = orginalMethod.call(this, ...args);
+        console.log(context.name, end);
+
+        return result;
+      };
+    }
+
+    return orginalMethod;
+  };
 }
 
-enum E {}
+function log<Input extends new (...args: any[]) => any>(
+  value: Input,
+  context: ClassDecoratorContext
+) {
+  if (context.kind === "class") {
+    return class extends value {
+      constructor(...args: any[]) {
+        super(args);
+      }
+      log(msg: string): void {
+        console.log(msg);
+      }
+    };
+  }
 
-class B {}
+  return value;
+}
+
+function bound(
+  orginalMethod: unknown,
+  context: ClassMethodDecoratorContext<any>
+) {
+  const methodName = context.name;
+
+  if (context.kind === "method") {
+    context.addInitializer(function () {
+      this[methodName] = this[methodName].bind(this);
+    });
+  }
+}
+
+@log
+export class A {
+  //@memberDecorator
+  private static hello: string;
+
+  // constructor() {
+  //   this.eat = this.eat.bind(this);
+  //   this.work = this.work.bind(this);
+  // }
+
+  @startAndEnd("시작", "끝")
+  @bound
+  eat() {
+    console.log("Eat");
+  }
+
+  @startAndEnd()
+  //@another
+  work() {
+    console.log("Work");
+  }
+  @startAndEnd()
+  sleep() {
+    console.log("Sleep");
+  }
+}
