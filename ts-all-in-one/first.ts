@@ -951,13 +951,13 @@ const arr = [1, 2, 3] as const;
 type Arr = keyof typeof arr;
 const key: Arr = 4;
 
-function a(this: Window | typeof obj, param: string) {
-  console.log(this.name);
-}
+// function a(this: Window | typeof obj, param: string) {
+//   console.log(this.name);
+// }
 
-const obj = { name: "zerocho" };
-const b = a.bind(obj);
-b(); //zerocho
+// const obj = { name: "zerocho" };
+// const b = a.bind(obj);
+// b(); //zerocho
 
 type T = ThisParameterType<typeof a>;
 
@@ -995,3 +995,19 @@ add5(5, 6);
 
 const add6 = add.bind(null, 1, 2, 3, 4, 5);
 add6(6);
+
+const a = [1, 2, 3, [1, 2], [[1], [2]]].flat();
+const b = [1, 2, 3, [1, 2]].flat(2);
+
+type A = {
+  name: string;
+  age: number;
+};
+
+type B = A[1 extends number ? "age" : "name"];
+// type C = 3 - 1;
+
+// FlatArray<(number[] | number[][] | number[][][]), 2>[];
+// FlatArray<(number | number[] | number[][]), 1>[];
+// FlatArray<(number | number[]), 0>[];
+// FlatArray<(number), -1>[];
