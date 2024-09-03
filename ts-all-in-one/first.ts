@@ -996,18 +996,66 @@ add5(5, 6);
 const add6 = add.bind(null, 1, 2, 3, 4, 5);
 add6(6);
 
-const a = [1, 2, 3, [1, 2], [[1], [2]]].flat();
-const b = [1, 2, 3, [1, 2]].flat(2);
+// const a = [1, 2, 3, [1, 2], [[1], [2]]].flat();
+// const b = [1, 2, 3, [1, 2]].flat(2);
 
-type A = {
-  name: string;
-  age: number;
-};
+// type A = {
+//   name: string;
+//   age: number;
+// };
 
-type B = A[1 extends number ? "age" : "name"];
+// type B = A[1 extends number ? "age" : "name"];
 // type C = 3 - 1;
 
 // FlatArray<(number[] | number[][] | number[][][]), 2>[];
 // FlatArray<(number | number[] | number[][]), 1>[];
 // FlatArray<(number | number[]), 0>[];
 // FlatArray<(number), -1>[];
+
+//type IsNever<T> = T extends never ? true : false;
+type IsNever<T> = [T] extends [never] ? true : false;
+type A1 = IsNever<never>;
+type A2 = IsNever<boolean>;
+
+interface VO {
+  value: any;
+}
+
+const obj = { value: "hi", what: 123 };
+const a: VO = obj;
+
+const returnVO = <T extends VO>(): T => {
+  return { value: "test" };
+};
+
+function onlyBoolean<T extends boolean>(arg: T = false): T {
+  return arg;
+}
+
+type Union<T> = T extends { a: infer U; b: infer U } ? U : never;
+type Union2<T> = T extends { a: () => infer U; b: () => infer U } ? U : never;
+type Result1 = Union<{ a: 1 | 2; b: 2 | 3 }>;
+type Result2 = Union2<{ a: () => 1 | 2; b: () => 2 | 3 }>;
+
+type Intersection<T> = T extends {
+  a: (pa: infer U) => void;
+  b: (pb: infer U) => void;
+}
+  ? U
+  : never;
+
+type Result3 = Intersection<{ a(pa: 1 | 2): void; b(pb: 2 | 3): void }>;
+
+// function double<T extends string | number>(x: T): T extends string ? string : number {
+//   return x;
+//   return x as any;
+// }
+
+const q = double("hi");
+const w = double(123);
+
+function double<T extends [T] extends [string] ? string : number>(
+  x: T
+): [T] extends [string] ? string : number {
+  return x;
+}
