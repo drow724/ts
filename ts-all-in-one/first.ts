@@ -1059,3 +1059,43 @@ function double<T extends [T] extends [string] ? string : number>(
 ): [T] extends [string] ? string : number {
   return x;
 }
+
+declare class A {
+  constructor(name: string);
+}
+
+function A(name: string) {
+  return new A(name);
+}
+
+new A("zerocho");
+A("zerocho");
+
+function Ex() {
+  return "hello";
+}
+
+namespace Ex {
+  export const a = "world";
+  export type B = number;
+}
+
+// enum Ex {
+// }
+
+Ex(); //"hello"
+Ex.a; // "world";
+
+const b: Ex.B = 123;
+
+function cc() {}
+cc.a = "b";
+cc.c = "t";
+
+namespace Example {
+  interface: Inner {
+    test: string;
+  }
+  type test2 = number;
+  export const a = 'hi'
+}
