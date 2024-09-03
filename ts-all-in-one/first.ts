@@ -1099,3 +1099,7 @@ namespace Example {
   type test2 = number;
   export const a = 'hi'
 }
+
+enum E {}
+
+class B {}
